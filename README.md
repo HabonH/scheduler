@@ -58,7 +58,7 @@ npm run storybook
   - days (Array: a list of day objects. Each object includes an id, name, and spots)
   - day (String: the currently selected day)
   - setDay (Function: accepts the name of the day eg. "Monday", "Tuesday", etc.)
-- Used by: components/DayList, it renders a list of components/DayListItem
+- Used by: components/App and components/DayList, they render a list of components/DayListItem
 
 ### DayListItem
 
@@ -80,7 +80,13 @@ npm run storybook
 
 - State:
 - Props:
-- Used by:
+  - id (Number: the id of the interviewer)
+  - name (String: the name of the interviewer)
+  - avatar (URL: a url to an image of the interviewer)
+  - selected (Boolean: determines if an interviewer is selected or not and displays the name and applies appropriate styles if selected.)
+  - setInterviewer (Function: is run when the InterviewerListItem is clicked. This function receives the interviewer's id as an argument. It sets the selected
+  interviewer.)
+- Used by: 
 
 ### Appointment
 
