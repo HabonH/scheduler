@@ -74,6 +74,9 @@ npm run storybook
 
 - State:
 - Props:
+  - interviewers (Array: an array of objects as seen above)
+  - setInterviewer (Function: a function that accepts an interviewer id. This function will simply be passed down to the InterviewerListItem)
+  - interviewer (Number: a number that represents the id of the currently selected interviewer)
 - Used by:
 
 ### InterviewerListItem
