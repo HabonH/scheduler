@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
+import React from "react";
 import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
 
@@ -17,6 +18,7 @@ export default function Form(props) {
             name="name"
             type="text"
             placeholder="Enter Student Name"
+            value={student}
           /*
             This must be a controlled component
             your code goes here
@@ -24,8 +26,9 @@ export default function Form(props) {
           />
         </form>
         <InterviewerList
-        /* your code goes here */
-        />
+        value={interviewer}
+      interviewers={interviewers}
+    />
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
