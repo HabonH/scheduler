@@ -32,13 +32,13 @@ npm run storybook
 - InterviewerList
 - InterviewerListItem
 - Appointment
-- Appointment/Header
-- Appointment/Empty
-- Appointment/Show
-- Appointment/Form
-- Appointment/Status
-- Appointment/Error
-- Appointment/Confirm
+- Appointment/Header: displays the time for the appointment
+- Appointment/Empty: allows a user to choose which time slot to book
+- Appointment/Show: allows a user to see an existing appointment
+- Appointment/Form: 
+- Appointment/Status: informs the user that an operation is in progress
+- Appointment/Error: informs the user when an error occurs
+- Appointment/Confirm: allows a user to confirm a destructive action
 
 ### Button
 
@@ -49,7 +49,7 @@ npm run storybook
   - Clickable (uses the onClick prop to handle the button click event)
   - Disabled (uses the disabled prop to apply the disabled attribute to the button element)
 
-- Used by: components/Button
+- Used by: components/Button, Appointment/Confirm, 
 
 ### DayList
 
@@ -95,46 +95,66 @@ npm run storybook
 
 - State:
 - Props:
-- Used by:
+- Used by: Header, Empty, Show, Form, Status, Error and Confirm components
 
 ### Appointment/Header
 
 - State:
-- Props:
-- Used by:
+- Props: 
+  - time (String: the time of the appointment (e.g "12pm"))
+- Used by: component/Appointment
 
 ### Appointment/Empty
 
 - State:
-- Props:
-- Used by:
+- Props: onAdd (Function: to be called when the user clicks to edit an interview)
+- Used by: component/Appointment
 
 ### Appointment/Show
 
 - State:
 - Props:
+  - student (String: eg. "Lydia Miller-Jones")
+  - interviewer (Object: we can use the interview object that already exists in stories/index.js for this)
+  - onEdit (Function: to be called when the user clicks the Edit button)
+  - onDelete (Function: to be called when the user clicks the Delete button)
 - Used by:
 
 ### Appointment/Form
 
 - State:
 - Props:
+  For Edit story, Form uses:
+  - student (String)
+  - interviewers (Array)
+  - interviewer (Number)
+  - onSave (Function)
+  - onCancel (Function)
+  For Create story, Form uses:
+  - interviewers (Array)
+  - onSave (Function)
+  - onCancel (Function)
 - Used by:
 
 ### Appointment/Status
 
 - State:
-- Props:
-- Used by:
+- Props: message (String: eg. "Deleting")
+- Used by: 
 
 ### Appointment/Error
 
 - State:
 - Props:
+  - message (String: eg. "Could not delete appointment.")
+  - onClose (Function: to be called when the user clicks the Close button)
 - Used by:
 
 ### Appointment/Confirm
 
 - State:
 - Props:
-- Used by:
+  - message (String: eg. "Delete the appointment?")
+  - onConfirm (Function: to be called when the user clicks the Confirm button)
+  - onCancel (Function: to be called when the user clicks the Cancel button)
+- Used by: component/Appointment
