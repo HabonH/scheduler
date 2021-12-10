@@ -94,7 +94,7 @@ npm run storybook
 ### Appointment
 
 - State:
-- Props:
+- Props: id, time, interview
 - Used by: Header, Empty, Show, Form, Status, Error and Confirm components
 
 ### Appointment/Header
