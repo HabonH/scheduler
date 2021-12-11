@@ -3,11 +3,22 @@ import "components/Appointment/styles.scss";
 import Header from './Header';
 import Show from './Show';
 import Empty from './Empty';
+import useVisualMode from 'hooks/useVisualMode';
+import Button from 'components/Button';
+import Form from './Form';
+
 
 //How does Appointment have access to the values of children components
 // Once I deconstruct props, will React know that I want to use the props of Appt to get the prop values in the child component?
 export default function Appointment(props) {
   const { id, time, interview } = props;
+  const EMPTY = "EMPTY";
+  const SHOW = "SHOW";
+  const CREATE = "CREATE";
+
+  const { mode, transition, back } = useVisualMode(
+    interview ? SHOW : EMPTY
+  )
   // console.log("Interview ---> ", interview)
   return (
     <article className="appointment">
@@ -15,16 +26,22 @@ export default function Appointment(props) {
         {interview ?
           <>
             <Header time={time} />
-            <Show
+            {mode === SHOW && (<Show
               id={id}
-              student={interview.student} 
-              interviewer={interview.interviewer.name} />
+              student={interview.student}
+              interviewer={interview.interviewer.name} />)}
+              
+            
           </>
           :
           <>
             <Header time={time} />
-            <Empty />
-
+            {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
+            {mode === CREATE && (<Form
+            interviewers={[]}
+            onSave={() => transition(SHOW)}
+            onCancel={() => back(EMPTY)}
+            />)}
           </>
         }
       </Fragment>
