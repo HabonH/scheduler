@@ -8,7 +8,7 @@ import Empty from './Empty';
 // Once I deconstruct props, will React know that I want to use the props of Appt to get the prop values in the child component?
 export default function Appointment(props) {
   const { id, time, interview } = props;
-  console.log("Interview ---> ", interview)
+  // console.log("Interview ---> ", interview)
   return (
     <article className="appointment">
       <Fragment>
