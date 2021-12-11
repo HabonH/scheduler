@@ -11,7 +11,7 @@ import Form from './Form';
 //How does Appointment have access to the values of children components
 // Once I deconstruct props, will React know that I want to use the props of Appt to get the prop values in the child component?
 export default function Appointment(props) {
-  const { id, time, interview } = props;
+  const { id, time, interview, interviewers} = props;
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
@@ -38,7 +38,7 @@ export default function Appointment(props) {
             <Header time={time} />
             {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
             {mode === CREATE && (<Form
-            interviewers={[]}
+            interviewers={interviewers}
             onSave={() => transition(SHOW)}
             onCancel={() => back(EMPTY)}
             />)}
