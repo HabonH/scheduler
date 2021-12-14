@@ -37,6 +37,7 @@ export default function Application(props) {
     });
   };
 
+
   const cancelInterview = (id) => {
     return axios.delete(`/api/appointments/${id}`).then(() => {
       const appointment = {
