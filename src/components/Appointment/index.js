@@ -34,23 +34,10 @@ export default function Appointment(props) {
   return (
     <article className="appointment">
       <Header time={time} />
-      {mode === SHOW && (
-        <Show
-          id={id}
-          student={interview.student}
-          interviewer={interview.interviewer.name}
-        />
-      )}
+      {mode === SHOW && ( <Show id={id} student={interview.student} interviewer={interview.interviewer.name} /> )}
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SAVING && <Status message={"SAVING"} />}
-
-      {mode === CREATE && (
-        <Form
-          interviewers={interviewers}
-          onSave={save}
-          onCancel={back}
-        />
-      )}
+      {mode === CREATE && ( <Form interviewers={interviewers} onSave={save} onCancel={back} /> )}
     </article>
   );
 }
