@@ -3,50 +3,54 @@ import "components/Application.scss";
 import axios from "axios";
 import DayList from "./DayList";
 import Appointment from "./Appointment";
-import { getAppointmentsForDay, getInterviewersForDay } from "./helpers/selectors";
-
-
-
-
+import {
+  getAppointmentsForDay,
+  getInterview,
+  getInterviewersForDay,
+} from "./helpers/selectors";
 
 export default function Application(props) {
-  const setDay = day => setState({ ...state, day });
-  // const setDays = days => setState(prev => ({ ...prev, days }));
-
+  const setDay = (day) => setState({ ...state, day });
   const [state, setState] = useState({
     day: "Monday",
     days: [],
     appointments: {},
-    interviewers: {}
+    interviewers: {},
   });
-
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
+  const bookInterview = (id, interview) => {
+    console.log("here --> ", id, interview);
+  }
+
 
   const appointments = dailyAppointments.map((appointment) => {
+    const interview = getInterview(state, appointment.interview);
+  
     return (
       <Appointment
         key={appointment.id}
         {...appointment}
+        interview={interview}
         interviewers={interviewers}
+        bookInterview={bookInterview}
       />
     );
   });
-
 
   useEffect(() => {
     Promise.all([
       axios.get("/api/days"),
       axios.get("/api/appointments"),
-      axios.get("/api/interviewers")
+      axios.get("/api/interviewers"),
     ]).then((all) => {
-      setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
-      // console.log("interviewers --> ", state.interviewers)
-      // const [first, second, third] = all;
-      // console.log("days & appts --> ", first, second, third);
-
-
+      setState((prev) => ({
+        ...prev,
+        days: all[0].data,
+        appointments: all[1].data,
+        interviewers: all[2].data,
+      }));
     });
   });
 
@@ -59,13 +63,8 @@ export default function Application(props) {
           alt="Interview Scheduler"
         />
         <hr className="sidebar__separator sidebar--centered" />
-        <nav className="sidebar__menu" >
-
-          <DayList
-            days={state.days}
-            value={state.day}
-            onChange={setDay} />
-
+        <nav className="sidebar__menu">
+          <DayList days={state.days} value={state.day} onChange={setDay} />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
@@ -76,7 +75,6 @@ export default function Application(props) {
       <section className="schedule">
         {appointments}
         <Appointment key="last" time="5pm" />
-
       </section>
     </main>
   );

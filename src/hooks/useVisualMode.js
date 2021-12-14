@@ -10,7 +10,7 @@ export default function useVisualMode(initial) {
       const historyCopy = [...prev];
       if (replace === true) {
         historyCopy.pop();
-      };
+      }
 
       historyCopy.push(newMode);
       return historyCopy;
@@ -34,7 +34,7 @@ export default function useVisualMode(initial) {
 
 
   };
-  
+
   const mode = history[history.length - 1];
 
   return ({ transition, back, mode});
