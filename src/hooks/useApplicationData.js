@@ -1,12 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-// spots is inside dayS obj
-// number of spots has a relation with appointments that are not booked (i.e. interview: null)
-// update spots in bookInterview and cancelInterview func. & in the .then request
-// update the state with new num of spots after update confirmed in server side
-//----
-//return updated days array
 
 export default function useApplicationData() {
   const [state, setState] = useState({
