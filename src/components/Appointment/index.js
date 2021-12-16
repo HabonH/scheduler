@@ -6,7 +6,6 @@ import Empty from "./Empty";
 import Status from "./Status";
 import Error from "./Error";
 import useVisualMode from "hooks/useVisualMode";
-import Button from "components/Button";
 import Form from "./Form";
 import Confirm from "./Confirm";
 
@@ -40,7 +39,6 @@ export default function Appointment(props) {
       })
       .catch((error) => {
         transition(ERROR_SAVE, true);
-
       });
   };
 
@@ -52,7 +50,6 @@ export default function Appointment(props) {
       })
       .catch((error) => {
         transition(ERROR_DELETE, true);
-
       });
   };
 
@@ -70,8 +67,18 @@ export default function Appointment(props) {
       )}
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SAVING && <Status message={"SAVING"} />}
-      {mode === ERROR_DELETE && <Error message="Could not cancel appointment." onClose={() => transition(SHOW)} />}
-      {mode === ERROR_SAVE && <Error message="Could not cancel appointment." onClose={()=> transition(SHOW)} />}
+      {mode === ERROR_DELETE && (
+        <Error
+          message="Could not cancel appointment."
+          onClose={() => transition(SHOW)}
+        />
+      )}
+      {mode === ERROR_SAVE && (
+        <Error
+          message="Could not cancel appointment."
+          onClose={() => transition(SHOW)}
+        />
+      )}
       {mode === DELETING && <Status message={"DELETING"} />}
       {mode === EDIT && (
         <Form
