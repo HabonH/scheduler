@@ -10,30 +10,24 @@ import {
 } from "./helpers/selectors";
 
 export default function Application(props) {
-  const { 
-    state, 
-    setDay, 
-    bookInterview, 
-    cancelInterview 
-  } = useApplicationData();
-  
-  const interviewers = getInterviewersForDay(state, state.day);
-  
-  // const dailyAppointments = getAppointmentsForDay(state, state.day);
-  const appointments = getAppointmentsForDay(state, state.day).map((appointment) => {
-    // const interview = getInterview(state, appointment.interview);
+  const { state, setDay, bookInterview, cancelInterview } =
+    useApplicationData();
 
-    return (
-      <Appointment
-        key={appointment.id}
-        {...appointment}
-        interview={getInterview(state, appointment.interview)}
-        interviewers={interviewers}
-        bookInterview={bookInterview}
-        cancelInterview={cancelInterview}
-      />
-    );
-  });
+  const interviewers = getInterviewersForDay(state, state.day);
+
+  const appointments = getAppointmentsForDay(state, state.day).map((appointment) => {
+      return (
+        <Appointment
+          key={appointment.id}
+          {...appointment}
+          interview={getInterview(state, appointment.interview)}
+          interviewers={interviewers}
+          bookInterview={bookInterview}
+          cancelInterview={cancelInterview}
+        />
+      );
+    }
+  );
 
   return (
     <main className="layout">

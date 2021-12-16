@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-
 export default function useApplicationData() {
   const [state, setState] = useState({
     day: "Monday",
@@ -40,7 +39,6 @@ export default function useApplicationData() {
 
     return axios.put(`/api/appointments/${id}`, { interview }).then(() => {
       setState({ ...state, appointments, days: updateDays(appointments) });
-
     });
   };
 
@@ -50,12 +48,12 @@ export default function useApplicationData() {
         ...state.appointments[id],
         interview: null,
       };
-      
+
       const appointments = {
         ...state.appointments,
         [id]: appointment,
       };
-      setState({...state, appointments, days: updateDays(appointments)})
+      setState({ ...state, appointments, days: updateDays(appointments) });
     });
   };
 
