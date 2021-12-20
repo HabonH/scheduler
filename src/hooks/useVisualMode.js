@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+
+// Allows transitions to different phases by using 'useState', this helps when transition from
+// different components in the App (e.g Show to Edit, etc)
 export default function useVisualMode(initial) {
   const [history, setHistory] = useState([initial]);
 

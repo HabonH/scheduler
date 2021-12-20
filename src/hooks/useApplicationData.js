@@ -10,6 +10,7 @@ export default function useApplicationData() {
   });
 
   const setDay = (day) => setState({ ...state, day });
+// Updates available spots remaining in the schedule based on booked or cancelled interviews
 
   const updateDays = (appointments) => {
     return state.days.map((day) => {

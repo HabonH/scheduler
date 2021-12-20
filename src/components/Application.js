@@ -7,14 +7,15 @@ import {
   getAppointmentsForDay,
   getInterview,
   getInterviewersForDay,
-} from "./helpers/selectors";
+} from "../helpers/selectors";
 
 export default function Application(props) {
   const { state, setDay, bookInterview, cancelInterview } =
     useApplicationData();
 
   const interviewers = getInterviewersForDay(state, state.day);
-
+// Uses getAppointmentsForDay to maps over appointsment to get the appointments for the day and format it
+// into Appointment component
   const appointments = getAppointmentsForDay(state, state.day).map((appointment) => {
       return (
         <Appointment
